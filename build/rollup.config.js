@@ -28,7 +28,8 @@ let overrides = {
 const external = [
   //外部库， 使用'umd'文件时需要先引入这个外部库
   "vue", // !标记为通过script引入，打包的时候不用打包 这个模块
-  'lodash-es'
+  'lodash-es',
+  "element-plus"
 ];
 
 

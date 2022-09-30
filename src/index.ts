@@ -3,11 +3,13 @@ import LText from './components/LText'
 import LImage from './components/LImage'
 import LShape from './components/LShape'
 import FinalPage from './components/FinalPage'
+import DrawerMove from './components/DrawerMove'
 const components = [ 
   LText,
   LImage,
   LShape,
-  FinalPage
+  FinalPage,
+  DrawerMove
 ]
 
 const install = (app: App) => { 
@@ -22,10 +24,21 @@ export {
   LText,
   LImage,
   LShape,
-  FinalPage
+  FinalPage,
+  DrawerMove
 }
 
 // export default {
 //   install
 // }
 export default install
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    LText: typeof LText;
+    LImage: typeof LImage;
+    LShape: typeof LShape;
+    FinalPage: typeof FinalPage;
+    DrawerMove: typeof DrawerMove;
+  }
+}
