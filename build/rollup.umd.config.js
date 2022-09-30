@@ -8,6 +8,12 @@ export default {
   output: {
     name,
     file: file('umd'),
-    format: 'umd'
+    format: 'umd',
+    globals: {
+      "vue": "Vue",
+      //"element-plus":"ElementPlus"
+      'lodash-es': '_'
+    },
+    exports: 'named' // !解决Mixing named and default exports
   }
 }
