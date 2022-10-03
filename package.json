@@ -1,6 +1,6 @@
 {
   "name": "lwj-lego-components",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "private": false,
   "main": "dist/lwj-lego-components.umd.js",
   "module": "dist/lwj-lego-components.esm.js",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-typescript": "^6.1.0",
     "@types/jest": "^26.0.15",

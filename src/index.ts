@@ -1,4 +1,5 @@
 import {App} from 'vue'
+import {version} from '../package.json'
 import LText from './components/LText'
 import LImage from './components/LImage'
 import LShape from './components/LShape'
@@ -20,7 +21,7 @@ const install = (app: App) => {
 
 // !这种导出，通过webpack引入的话支持tree-shaking么，感觉不支持。
 export { 
-  //install,
+  install,
   LText,
   LImage,
   LShape,
@@ -28,10 +29,10 @@ export {
   DrawerMove
 }
 
-// export default {
-//   install
-// }
-export default install
+export default {
+  version,
+  install,
+}
 
 declare module 'vue' {
   export interface GlobalComponents {

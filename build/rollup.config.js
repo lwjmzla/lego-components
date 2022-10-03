@@ -4,6 +4,7 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from "rollup-plugin-typescript2"
 import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle"
+const json = require("@rollup/plugin-json"); // json解析
 // import cjs from '@rollup/plugin-commonjs'
 // import replace from '@rollup/plugin-replace'
 import css from 'rollup-plugin-css-only'
@@ -42,6 +43,7 @@ export default {
   },
   external,
   plugins: [
+    json(), // 支持业务代码上获取json文件的key value（ps:node环境的require默认支持json文件了的）
     nodeResolve(),
     excludeDependenciesFromBundle({ peerDependencies: true, dependencies: false }),
     typescript({ tsconfigOverride: overrides }),
