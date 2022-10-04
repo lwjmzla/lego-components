@@ -4,17 +4,13 @@ import { componentsDefaultProps } from '../../src/defaultProps'
 describe('LText.vue', () => {
   const { location } = window
   beforeEach((): void => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      delete window.location;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      window.location = {
-          href: '',
-      }
+    Object.defineProperty(window,'location',{
+      writable: true,
+      value: {href: ''}
+    })
   })
   afterEach((): void => {
-      window.location = location;
+    window.location = location;
   })
   it('default LText render', () => {
     const msg = 'test'
