@@ -5,6 +5,7 @@ import LImage from './components/LImage'
 import LShape from './components/LShape'
 import FinalPage from './components/FinalPage'
 import DrawerMove from './components/DrawerMove'
+
 const components = [ 
   LText,
   LImage,
@@ -18,6 +19,8 @@ const install = (app: App) => {
     app.use(component)
   })
 }
+
+export * from './types'
 
 // !这种导出，通过webpack引入的话支持tree-shaking么，感觉不支持。
 export { 

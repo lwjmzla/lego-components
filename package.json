@@ -1,6 +1,6 @@
 {
   "name": "lwj-lego-components",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": false,
   "main": "dist/lwj-lego-components.umd.js",
   "module": "dist/lwj-lego-components.esm.js",
@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test"
+      "pre-commit": "npm run lint && npm run test"
     }
   },
   "dependencies": {
