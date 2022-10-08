@@ -29,7 +29,7 @@ export {
   LImage,
   LShape,
   FinalPage,
-  DrawerMove
+  DrawerMove,
 }
 
 export default {
