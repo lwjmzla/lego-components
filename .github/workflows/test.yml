@@ -1,0 +1,28 @@
+# github actions 中文文档 https://docs.github.com/cn/actions/getting-started-with-github-actions
+
+name: test
+
+on:
+  push:
+    branches: # 在XX分支推送时候触发
+      - master
+    paths: # 推送的文件包含以下路径时触发
+      - '.github/workflows/**'
+      - '__test__/**'
+      - 'src/**'
+
+jobs: #任务
+  test:
+    runs-on: ubuntu-latest #默认值就这个
+    steps:
+      - uses: actions/checkout@v2 # 第三的actions，相当于执行git pull
+      - name: Use Node.js # name为step名称，可写可不写
+        uses: actions/setup-node@v1  # 第三的actions，安装nodejs
+        with:
+          node-version: 14
+      - name: lint and test
+        run: | # 多行执行，所以用 |
+          echo 'github actions'
+          npm install -g cnpm --registry=https://registry.npmmirror.com
+          cnpm i
+          npm run test
