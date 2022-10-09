@@ -68,7 +68,7 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "rollup-plugin-vue": "^6.0.0-beta.10",
     "typescript": "^4.0.5",
-    "vue": "file:../vue3-ts-demo/node_modules/vue",
+    "vue": "^3.2.13",
     "vue-jest": "^5.0.0-alpha.5"
   }
 }

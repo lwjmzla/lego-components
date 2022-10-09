@@ -20,7 +20,7 @@ jobs: #任务
         uses: actions/setup-node@v1  # 第三的actions，安装nodejs
         with:
           node-version: 14
-      - name: lint and test
+      - name: install and test
         run: | # 多行执行，所以用 |
           echo 'github actions'
           npm install -g cnpm --registry=https://registry.npmmirror.com
