@@ -24,7 +24,7 @@
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "test": "vue-cli-service test:unit",
     "test:watch": "vue-cli-service test:unit --watch",
-    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "publishCheckAndBuild": "npm run lint && npm run test && npm run build",
     "publishOnly": "node ./publish/index.js",
     "build:test": "rollup --config test-rollup/rollup.config.js"
   },
