@@ -21,7 +21,7 @@ class InitCommand {
 
   async init() {
     // !获取最新的版本号
-    this.latestVersion = await getNpmLatestVersion(pkg.name, getDefaultRegistry())
+    this.latestVersion = await getNpmLatestVersion(pkg.name, getDefaultRegistry(true))
     if (!semver.gt(pkg.version, this.latestVersion)) {
       throw new Error(`要发版的版本号需大于当前最新版本号${this.latestVersion}`)
     }
@@ -35,6 +35,8 @@ class InitCommand {
         exec("git add -A")
         exec(`git commit -m "update ${version}"`)
         exec("git push origin master")
+
+        exec("npm publish")
       } else {
         console.log(colors.yellow('已取消操作'))
       }
