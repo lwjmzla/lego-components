@@ -24,7 +24,7 @@
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "test": "vue-cli-service test:unit",
     "test:watch": "vue-cli-service test:unit --watch",
-    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "publishOnly": "node ./publish/index.js",
     "build:test": "rollup --config test-rollup/rollup.config.js"
   },
   "husky": {
@@ -39,6 +39,7 @@
     "vue": "^3.0.0-0"
   },
   "devDependencies": {
+    "@jking-lwj/get-npm-info": "^1.0.21",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
@@ -56,17 +57,21 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-beta.8",
     "babel-eslint": "^10.1.0",
+    "colors": "^1.4.0",
     "cross-env": "^7.0.2",
     "element-plus": "^2.1.8",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
     "husky": "^4.3.0",
+    "inquirer": "^8.2.4",
     "lego-bricks": "^1.0.11",
     "rollup": "^2.28.2",
     "rollup-plugin-css-only": "^2.1.0",
     "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.13",
     "rollup-plugin-typescript2": "^0.29.0",
     "rollup-plugin-vue": "^6.0.0-beta.10",
+    "semver": "^7.3.7",
+    "shelljs": "^0.8.5",
     "typescript": "^4.0.5",
     "vue": "^3.2.13",
     "vue-jest": "^5.0.0-alpha.5"
