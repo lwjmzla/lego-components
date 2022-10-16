@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const {getDefaultRegistry, getNpmLatestVersion} = require('@jking-lwj/get-npm-info')
 const semver = require('semver')
 const colors = require('colors/safe') // !命令行颜色
-const { cd, exec, echo, touch } = require("shelljs")
+const { exec } = require("shelljs")
 const pkg = require('../package.json')
 
 class InitCommand {
@@ -29,11 +29,12 @@ class InitCommand {
 
   async exec() {
     try {
-      //const localPath = process.cwd()
       const { version,isConfirm } = await this.prepare()
       if (isConfirm) {
         exec("git add -A")
         exec(`git commit -m "update ${version}"`)
+        exec(`git tag v${version}`)
+        exec(`git push origin v${version}`)
         exec("git push origin master")
 
         exec("npm publish")
