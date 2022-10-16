@@ -1,6 +1,6 @@
 {
   "name": "lwj-lego-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": false,
   "main": "dist/lwj-lego-components.umd.js",
   "module": "dist/lwj-lego-components.esm.js",
