@@ -29,9 +29,11 @@ class InitCommand {
       //const localPath = process.cwd()
       const { version,isConfirm } = await this.prepare()
       if (isConfirm) {
-        console.log(1)
+        exec("git add -A")
+        exec(`git commit -m "update ${version}"`)
+        exec("git push origin master")
       } else {
-        console.log(colors.yellow('已取消'))
+        console.log(colors.yellow('已取消操作'))
       }
     } catch (error) {
       console.error(error.message)
