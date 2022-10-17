@@ -1,6 +1,6 @@
 {
   "name": "lwj-lego-components",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": false,
   "main": "dist/lwj-lego-components.umd.js",
   "module": "dist/lwj-lego-components.esm.js",
@@ -58,6 +58,7 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-beta.8",
     "babel-eslint": "^10.1.0",
+    "colors": "^1.4.0",
     "cross-env": "^7.0.2",
     "element-plus": "^2.1.8",
     "eslint": "^6.7.2",
@@ -70,6 +71,7 @@
     "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.13",
     "rollup-plugin-typescript2": "^0.29.0",
     "rollup-plugin-vue": "^6.0.0-beta.10",
+    "shelljs": "^0.8.5",
     "typescript": "^4.0.5",
     "vue": "^3.2.13",
     "vue-jest": "^5.0.0-alpha.5"
