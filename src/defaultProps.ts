@@ -11,7 +11,7 @@ export interface ComponentData {
 
 export interface PageData {
   props: { [key: string]: any };
-  setting: { [key: string]: any };
+  setting?: { [key: string]: any };
   id?: number;
   title?: string;
   desc?: string;

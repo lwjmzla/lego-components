@@ -23,6 +23,5 @@ jobs: #任务
       - name: install and test
         run: | # 多行执行，所以用 |
           echo 'github actions'
-          npm install -g cnpm --registry=https://registry.npmmirror.com
-          cnpm i
+          npm i --registry=https://registry.npmmirror.com
           npm run test
