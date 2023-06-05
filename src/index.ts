@@ -16,7 +16,8 @@ const components = [
 
 const install = (app: App) => { 
   components.map(component => {
-    app.use(component)
+    //app.use(component as any)
+    app.component(component.name, component);
   })
 }
 
