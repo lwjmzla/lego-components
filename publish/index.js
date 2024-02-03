@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const execa = require('execa')
 const inquirer = require('inquirer');
 const {getDefaultRegistry, getNpmLatestVersion} = require('@jking-lwj/get-npm-info')
 const semver = require('semver')
 const colors = require('colors/safe') // !命令行颜色
 const { exec } = require("shelljs")
 const pkg = require('../package.json')
-
+const curVersion = pkg.version
 class InitCommand {
   constructor(argv) {
     this._argv = argv
+    this.version = curVersion
     const runner = new Promise(() => {
       let chain = Promise.resolve();
       chain = chain.then(() => this.init());
@@ -20,9 +22,39 @@ class InitCommand {
   }
 
   async init() {
+    const bumps = ['patch', 'minor', 'major', 'prerelease']
+    const versions = {}
+
+    bumps.forEach((b) => {
+      versions[b] = semver.inc(curVersion, b, 'beta') // ! beta只对prerelease有影响
+    })
+
+    //console.log(versions)
+
+    const bumpChoices = bumps.map((b) => ({
+      name: `${b} (${versions[b]})`,
+      value: b
+    }))
+
+    const { bump, customVersion } = await inquirer.prompt([
+      {
+        name: 'bump',
+        message: '请选择需要发布的版本:',
+        type: 'list',
+        choices: [...bumpChoices, { name: 'custom', value: 'custom' }]
+      },
+      {
+        name: 'customVersion',
+        message: '请输入需要发布的版本:',
+        type: 'input',
+        when: (answers) => answers.bump === 'custom'
+      }
+    ])
+
+    this.version = customVersion || versions[bump]
     // !获取最新的版本号
     this.latestVersion = await getNpmLatestVersion(pkg.name, getDefaultRegistry(true))
-    if (!semver.gt(pkg.version, this.latestVersion)) {
+    if (!semver.gt(this.version, this.latestVersion)) {
       throw new Error(`要发版的版本号需大于当前最新版本号${this.latestVersion}`)
     }
   }
@@ -31,10 +63,14 @@ class InitCommand {
     try {
       const { version,isConfirm } = await this.prepare()
       if (isConfirm) {
+        // 使用npm version 更新package.json 的版本号
+        await execa('npm', ['--no-git-tag-version', 'version', version], {
+          stdio: 'inherit'
+        })
         exec("git add -A")
         exec(`git commit -m "update ${version}"`)
-        exec(`git tag v${version}`)
-        exec(`git push origin v${version}`)
+        exec(`git tag ${version}`)
+        exec(`git push origin ${version}`)
         exec("git push origin master")
 
         exec("npm publish")
@@ -87,12 +123,12 @@ class InitCommand {
       {
         type: 'confirm', // !二选一  true or false
         name: 'isConfirm',
-        message: `当前需要发版的版本号为${pkg.version}, are you sure?`,
+        message: `当前需要发版的版本号为${this.version}, are you sure?`,
         default: false
       },
     ])
     return {
-      version: pkg.version,
+      version: this.version,
       isConfirm
     }
   }
